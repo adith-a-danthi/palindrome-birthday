@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<title>Palindrome Birthday</title>
+	</head>
+	<body>
+		<main class="card">
+			<h1>Palindrome Birthday</h1>
+			<p class="subtitle">
+				Enter your birthday and we'll tell you if it is a Palindrome.
+			</p>
+			<p class="note">
+				This app checks your birthdate in 4 formats
+				<i>yyyy-mm-dd, dd-mm-yyyy, mm-dd-yy, m-dd-yyyy</i>.
+			</p>
+
+			<div class="input-date">
+				<input type="date" id="date-picker" name="date" />
+                <button id="check-btn">Check</button>
+			</div>
+
+			<p id="result"></p>
+		</main>
+		<script src="app.js"></script>
+	</body>
+</html>
