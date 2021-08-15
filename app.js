@@ -25,10 +25,19 @@ function checkPalindromeForAllDateFormats(dates) {
 function getNextDate(date) {
 	const currentDate = new Date(date.year, date.month - 1, date.day);
 	const nextDate = new Date(currentDate.getTime() + 86400000);
+	let [day, month, year] = [
+		nextDate.getDate(),
+		nextDate.getMonth() + 1,
+		nextDate.getFullYear(),
+	];
+	if (month < 10) {
+		month = "0" + String(month);
+	}
+	console.log(month);
 	const dateObj = {
-		day: String(nextDate.getDate()),
-		month: String(nextDate.getMonth() + 1),
-		year: String(nextDate.getFullYear()),
+		day: String(day),
+		month: String(month),
+		year: String(year),
 	};
 	return dateObj;
 }
@@ -36,10 +45,19 @@ function getNextDate(date) {
 function getPrevDate(date) {
 	const currentDate = new Date(date.year, date.month - 1, date.day);
 	const nextDate = new Date(currentDate.getTime() - 86400000);
+	let [day, month, year] = [
+		nextDate.getDate(),
+		nextDate.getMonth() + 1,
+		nextDate.getFullYear(),
+	];
+	if (month < 10) {
+		month = "0" + String(month);
+	}
+	console.log(month);
 	const dateObj = {
-		day: String(nextDate.getDate()),
-		month: String(nextDate.getMonth() + 1),
-		year: String(nextDate.getFullYear()),
+		day: String(day),
+		month: String(month),
+		year: String(year),
 	};
 	return dateObj;
 }
@@ -56,6 +74,7 @@ function getNearestPalindromeDate(day, month, year) {
 			nextDate.month,
 			nextDate.year
 		);
+
 		if (checkPalindromeForAllDateFormats(dates)) {
 			return [count, nextDate, "next"];
 		}
@@ -77,11 +96,11 @@ checkBtn.addEventListener("click", () => {
 		const month = dateArray[1];
 		const day = dateArray[2];
 
-		const dateFormatList = this.getDateInAllFormats(day, month, year);
+		const dateFormatList = getDateInAllFormats(day, month, year);
 		const isPalindrome = checkPalindromeForAllDateFormats(dateFormatList);
-
-        result.style.display = "block";
-        result.style.borderColor = "#292929";
+		console.log(isPalindrome);
+		result.style.display = "block";
+		result.style.borderColor = "#292929";
 		if (isPalindrome) {
 			result.innerText = "Yay! Your birthday is a palindrome";
 		} else {
@@ -93,9 +112,9 @@ checkBtn.addEventListener("click", () => {
 				result.innerText = `The nearest palindrome date is ${dateStr}, which was ${count} days ago.`;
 			}
 		}
-    } else {
-        result.style.display = "block";
-        result.style.borderColor = "red";
-        result.innerText = "Please enter a date";
-    }
+	} else {
+		result.style.display = "block";
+		result.style.borderColor = "red";
+		result.innerText = "Please enter a date";
+	}
 });
