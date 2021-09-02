@@ -33,7 +33,6 @@ function getNextDate(date) {
 	if (month < 10) {
 		month = "0" + String(month);
 	}
-	console.log(month);
 	const dateObj = {
 		day: String(day),
 		month: String(month),
@@ -53,7 +52,6 @@ function getPrevDate(date) {
 	if (month < 10) {
 		month = "0" + String(month);
 	}
-	console.log(month);
 	const dateObj = {
 		day: String(day),
 		month: String(month),
@@ -98,7 +96,6 @@ checkBtn.addEventListener("click", () => {
 
 		const dateFormatList = getDateInAllFormats(day, month, year);
 		const isPalindrome = checkPalindromeForAllDateFormats(dateFormatList);
-		console.log(isPalindrome);
 		result.style.display = "block";
 		result.style.borderColor = "#292929";
 		if (isPalindrome) {
