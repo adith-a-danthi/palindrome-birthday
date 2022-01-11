@@ -2,7 +2,7 @@ const datePicker = document.getElementById("date-picker");
 const checkBtn = document.getElementById("check-btn");
 const result = document.getElementById("result");
 
-function getDateInAllFormats(day, month, year) {
+const getDateInAllFormats = (day, month, year) => {
 	const yy = year.slice(-2);
 	const ddmmyyyy = day + month + year;
 	const mmddyyyy = month + day + year;
@@ -14,7 +14,7 @@ function getDateInAllFormats(day, month, year) {
 	return [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yyddmm];
 }
 
-function checkPalindromeForAllDateFormats(dates) {
+const checkPalindromeForAllDateFormats = (dates) => {
 	const palindrome = dates.filter((str) => {
 		return str === str.split("").reverse().join("");
 	});
@@ -22,7 +22,7 @@ function checkPalindromeForAllDateFormats(dates) {
 	return palindrome.length > 0;
 }
 
-function getNextDate(date) {
+const getNextDate = (date) => {
 	const currentDate = new Date(date.year, date.month - 1, date.day);
 	const nextDate = new Date(currentDate.getTime() + 86400000);
 	let [day, month, year] = [
@@ -33,15 +33,14 @@ function getNextDate(date) {
 	if (month < 10) {
 		month = "0" + String(month);
 	}
-	const dateObj = {
+	return {
 		day: String(day),
 		month: String(month),
 		year: String(year),
 	};
-	return dateObj;
 }
 
-function getPrevDate(date) {
+const getPrevDate = (date) => {
 	const currentDate = new Date(date.year, date.month - 1, date.day);
 	const nextDate = new Date(currentDate.getTime() - 86400000);
 	let [day, month, year] = [
@@ -52,15 +51,14 @@ function getPrevDate(date) {
 	if (month < 10) {
 		month = "0" + String(month);
 	}
-	const dateObj = {
+	return {
 		day: String(day),
 		month: String(month),
 		year: String(year),
 	};
-	return dateObj;
 }
 
-function getNearestPalindromeDate(day, month, year) {
+const getNearestPalindromeDate = (day, month, year) => {
 	let nextDate = getNextDate({ day, month, year });
 	let prevDate = getPrevDate({ day, month, year });
 	let count = 0;
@@ -101,8 +99,8 @@ checkBtn.addEventListener("click", () => {
 		if (isPalindrome) {
 			result.innerText = "Yay! Your birthday is a palindrome";
 		} else {
-			const [count, date, tag] = getNearestPalindromeDate(day, month, year);
-			const dateStr = `${date.day}-${date.month}-${date.year}`;
+			const [count, nearestDate, tag] = getNearestPalindromeDate(day, month, year);
+			const dateStr = `${nearestDate.day}-${nearestDate.month}-${nearestDate.year}`;
 			if (tag === "next") {
 				result.innerText = `The nearest palindrome date is ${dateStr}, which is in ${count} days.`;
 			} else {
